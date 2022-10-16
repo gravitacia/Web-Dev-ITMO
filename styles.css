@@ -51,7 +51,7 @@ body{
 
 .subforum-row{
     display: grid;
-    grid-template-columns: 80% 10% 10%;
+    grid-template-columns: 65% 15%;
 }
 
 .subforum-column{
@@ -91,7 +91,7 @@ body{
     .subforum-row{
         display: grid;
         grid-template-columns: 75%;
-        grid-template-rows: 50% 50%;
+        grid-template-rows: 50% ;
     }
 
     .subforum-devider{
@@ -110,7 +110,7 @@ body{
 
     .subforum-row{
         display: grid;
-        grid-template-columns: 60% 20% 20%;
+        grid-template-columns: 50% 20%;
     }
 
     html{
