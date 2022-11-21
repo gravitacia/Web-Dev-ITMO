@@ -82,17 +82,27 @@ body{
     display: none;
 }
 
-a .subforum-description {
+.subforum-description{
     float: left;
     display: block;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    text-decoration:none;
 }
 
+a .subforum-description .subforum-column .center {
+    text-decoration:none;
+}
 
-
+.vote-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+}
 
 @media screen and (max-width: 460px) {
 
