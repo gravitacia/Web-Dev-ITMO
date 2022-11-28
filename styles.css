@@ -53,8 +53,9 @@ body{
 
 .subforum-row{
     display: grid;
-    grid-template-columns: 65% 15%;
+    grid-template-columns: 8% 40% 8%;
 }
+
 
 .subforum-column{
     padding: 10px;
@@ -66,6 +67,7 @@ body{
 .subforum-description *{
     margin-block: 0;
     overflow: hidden;
+
 }
 
 .subforum-stats *{
@@ -73,13 +75,13 @@ body{
 }
 
 .center{
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .subforum-devider{
     display: none;
+
 }
 
 .subforum-description{
@@ -89,11 +91,6 @@ body{
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    text-decoration:none;
-}
-
-a .subforum-description .subforum-column .center {
-    text-decoration:none;
 }
 
 .vote-button{
@@ -102,6 +99,20 @@ a .subforum-description .subforum-column .center {
     align-items: center;
     border: none;
     border-radius: 5px;
+}
+
+.like{
+    font-size:24px;
+    user-select: none;
+}
+.plus {
+    color:green;
+}
+.minus{
+    color:red;
+}
+.cursor{
+    cursor:pointer;
 }
 
 @media screen and (max-width: 460px) {
@@ -114,14 +125,13 @@ a .subforum-description .subforum-column .center {
 
 
     .container{
-        margin: 10px;
-        padding: 10px;
+        margin: 15px;
+        padding: 15px;
     }
 
     .subforum-row{
         display: grid;
-        grid-template-columns: 75%;
-        grid-template-rows: 50% ;
+        grid-template-columns: 20% 60% 20%;
     }
 
     .subforum-devider{
@@ -153,7 +163,7 @@ a .subforum-description .subforum-column .center {
 
     .subforum-row{
         display: grid;
-        grid-template-columns: 50% 20%;
+        grid-template-columns: 20% 60% 20%;
     }
 
     html{
