@@ -1,5 +1,3 @@
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
 function navButton() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -9,46 +7,14 @@ function navButton() {
     }
 }
 
-
-var counterVal = 0;
-
-function incrementClick() {
-    updateDisplay(++counterVal);
-}
-
-function decrementCounter() {
-    if(counterVal > 0) {
-        updateDisplay(--counterVal);
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("plus")) {
+        console.log(event.target.parentElement.querySelector(".counter").innerHTML)
+        event.target.parentElement.querySelector(".counter").innerText = parseInt(event.target.parentElement.querySelector(".counter").innerText) + 1;
     }
-    else{
-        counterVal = 0;
-        updateDisplay(counterVal);
+
+    if (event.target.classList.contains("minus")) {
+        console.log(event.target.parentElement.querySelector(".counter").innerHTML)
+        event.target.parentElement.querySelector(".counter").innerText = parseInt(event.target.parentElement.querySelector(".counter").innerText) - 1;
     }
-}
-
-function updateDisplay(val) {
-    document.getElementById("counter-label").innerHTML = val;
-}
-
-// Выбираем все элементы с классом like
-const likes = document.querySelectorAll('.like');
-
-// В каждом элементе выбираем плюс и минус. Навешиваем на событие клик функцию render()
-likes.forEach(like => {
-    const plus = like.querySelector('.plus');
-    const minus = like.querySelector('.minus');
-    const counter_element = like.querySelector('.counter');
-
-    let counter = 0;
-
-    plus.addEventListener('click', () => {
-        render(++counter, counter_element);
-    });
-
-    minus.addEventListener('click', () => {
-        render(--counter, counter_element)
-    });
 });
-
-// Функция обновляет текст
-const render = (counter, counter_element) => counter_element.innerText = counter;
