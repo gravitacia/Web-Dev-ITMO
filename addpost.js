@@ -1,35 +1,30 @@
-const form = document.querySelector('form');
-const ul = document.querySelector('ul');
-const button = document.querySelector('button');
-const input = document.getElementById('item');
-let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+const navBar = document.querySelector(".topnav")
+const addPostElement = document.querySelector(".add-post")
 
-localStorage.setItem('items', JSON.stringify(itemsArray));
-const data = JSON.parse(localStorage.getItem('items'));
+addPostElement.addEventListener('click', () => {
 
-const liMaker = (text) => {
-    const li = document.createElement('li');
-    li.textContent = text;
-    ul.appendChild(li);
-}
+    const post = document.createElement("div");
+    post.className = "subforum";
+    post.innerHTML = "<div class=\"subforum-title\">\n" +
+        "                    <h1>General Information</h1>\n" +
+        "                </div>\n" +
+        "                <div class=\"subforum-row center\">\n" +
+        "                    <div class=\"subforum-stats subforum-column center\">\n" +
+        "                    <div class=\"vote-button\">\n" +
+        "                        <div class=\"like\">\n" +
+        "                            <span class=\"plus cursor\">+</span> <span class=\"counter\">0</span> <span class=\"minus cursor\">-</span>\n" +
+        "                        </div>\n" +
+        "                    </div>\n" +
+        "                    </div>\n" +
+        "                    <div class=\"subforum-description subforum-column center\">\n" +
+        "                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cum dolore hic\n" +
+        "                            necessitatibus nostrum optio possimus sequi veniam. Accusantium amet deserunt dolorum id\n" +
+        "                            illo incidunt rem rerum soluta tempore voluptas!</p>\n" +
+        "                    </div>\n" +
+        "                    <div class=\"subforum-stats subforum-column center\">\n" +
+        "                        <span>Author | Date</span>\n" +
+        "                    </div>\n" +
+        "                </div>";
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    itemsArray.push(input.value);
-    localStorage.setItem('items', JSON.stringify(itemsArray));
-    liMaker(input.value);
-    input.value = "";
-});
-
-data.forEach(item => {
-    liMaker(item);
-});
-
-button.addEventListener('click', function () {
-    localStorage.clear();
-    while (ul.firstChild) {
-        ul.removeChild(ul.firstChild);
-    }
-    itemsArray = [];
-});
+    navBar.after(div);
+})

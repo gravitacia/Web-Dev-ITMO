@@ -115,6 +115,12 @@ body{
     cursor:pointer;
 }
 
+img{
+    margin:5px;
+    width:200px;
+    height:200px;
+}
+
 @media screen and (max-width: 460px) {
 
     .topnav a:not(:first-child) {display: none;}

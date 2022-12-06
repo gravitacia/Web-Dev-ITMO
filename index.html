@@ -9,6 +9,7 @@
 </head>
 <body>
 <script src="index.js"></script>
+<script src="addpost.js"></script>
     <header>
         <!--NavBar Section-->
         <div class="topnav" id="myTopnav">
@@ -24,12 +25,12 @@
             <a href="pages/login.html">
                 Sign up
             </a>
-            <a href="pages/post.html">
-                Add Post
-            </a>
             <a href="javascript:void(0);" class="icon" onclick="navButton()">
                 <i class="fa fa-bars"></i>
             </a>
+            <button class="add-post">
+                Добавить пост
+            </button>
         </div>
     </header>
 
@@ -40,14 +41,13 @@
                 <div class="subforum-title">
                     <h1>General Information</h1>
                 </div>
-
                 <div class="subforum-row center">
                     <div class="subforum-stats subforum-column center">
-                    <div class="vote-button">
-                        <div class="like">
-                            <span class="plus cursor">+</span> <span class="counter">0</span> <span class="minus cursor">-</span>
+                        <div class="vote-button">
+                            <div class="like">
+                                <span class="plus cursor">+</span> <span class="counter">0</span> <span class="minus cursor">-</span>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="subforum-description subforum-column center">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cum dolore hic
@@ -60,6 +60,8 @@
                 </div>
             </div>
         </div>
+        </div>
+
 
 
         <!--More posts-->
