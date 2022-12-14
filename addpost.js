@@ -1,5 +1,5 @@
 const navBar = document.querySelector(".add-post-button")
-const formElement = document.getElementById('post-form');
+const formElement = document.getElementById('post-form')
 
 let idNum = +localStorage.getItem("idNum") || 2
 
