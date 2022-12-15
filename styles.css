@@ -114,13 +114,68 @@ body{
 .cursor{
     cursor:pointer;
 }
-
-img{
-    margin:5px;
-    width:200px;
-    height:200px;
+/* Стиль ввода, выделение элементов и текстовых областей */
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
 }
 
+/* Стиль метки для отображения рядом с входными данными */
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+/* Стиль кнопки "Отправить" */
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+/* Стиль контейнера */
+.form-container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/* Плавающая колонка для этикеток: ширина 25% */
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+/* Плавающая колонка для входа: ширина 75% */
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Очистить поплавки после столбцов */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Адаптивный макет - когда экран меньше 600 пикселей в ширину, сделайте два столбца укладываются друг на друга, а не рядом друг с другом */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
 @media screen and (max-width: 460px) {
 
     .topnav a:not(:first-child) {display: none;}
