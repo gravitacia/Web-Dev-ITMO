@@ -16,6 +16,9 @@ for (let i = 0; i < posts.length; i++) {
     let title = posts[i].title
     let id = posts[i].id
     let text = posts[i].subject
+    let day = posts[i].day
+    let month = posts[i].month
+    let year = posts[i].year
 
     let div = document.createElement('div');
     div.className = "post";
@@ -37,7 +40,7 @@ for (let i = 0; i < posts.length; i++) {
                         <p>${text}</p>
                     </div>
                     <div class="subforum-stats subforum-column center">
-                        <span>${authorName} | Date</span>
+                        <span>${authorName} | ${day}.${month}.${year}</span>
                     </div>
                 </div>
             </div>
