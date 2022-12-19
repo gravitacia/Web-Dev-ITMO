@@ -1,5 +1,3 @@
-let navBar = document.getElementById("container");
-
 let posts
 
 if (!localStorage.getItem("posts")) {
