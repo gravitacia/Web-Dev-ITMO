@@ -4,11 +4,11 @@ let idNum = +localStorage.getItem("idNum") || 2
 
 formElement.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(formElement); // создаём объект FormData, передаём в него элемент формы
-    // теперь можно извлечь данные
+    const formData = new FormData(formElement);
     let name = formData.get('username');
     let subject = formData.get('subject');
     let title = formData.get('title');
+    let date = new Date();
 
     idNum = (idNum + 1)
     localStorage.setItem("idNum", idNum)
@@ -18,7 +18,10 @@ formElement.addEventListener('submit', (e) => {
         author: name,
         title: title,
         subject: subject,
-        rating: 0
+        rating: 0,
+        day: date.getDate(),
+        month: date.getMonth(),
+        year: date.getFullYear()
     }
 
     let posts
@@ -33,4 +36,23 @@ formElement.addEventListener('submit', (e) => {
     posts.push(object)
 
     localStorage.setItem("posts", JSON.stringify(posts))
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: object.title,
+            body: object.subject,
+            userId: object.id,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+    window.location.reload();
+
+
+
 })
