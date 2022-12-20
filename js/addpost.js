@@ -36,23 +36,5 @@ formElement.addEventListener('submit', (e) => {
     posts.push(object)
 
     localStorage.setItem("posts", JSON.stringify(posts))
-
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        body: JSON.stringify({
-            title: object.title,
-            body: object.subject,
-            userId: object.id,
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
-    })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-
     window.location.reload();
-
-
-
 })
