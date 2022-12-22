@@ -45,3 +45,36 @@ for (let i = 0; i < posts.length; i++) {
         </div>`;
     document.body.appendChild(div);
 }
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => response.json())
+    .then((json) => {
+        //for (let i = 0; i < json.id; i++) {
+            let div = document.createElement('div');
+            div.className = "post";
+            div.innerHTML = `<div class="container">
+            <div class="subforum">
+                <div class="subforum-title">
+                    <h1>${json.title}</h1>
+                </div>
+
+                <div class="subforum-row center">
+                    <div class="subforum-stats subforum-column center">
+                    <div class="vote-button">
+                        <div class="like">
+                            <span class="plus cursor">+</span> <span id="${json.id}" class="counter">0</span> <span class="minus cursor">-</span>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="subforum-description subforum-column center">
+                        <p>${json.body}</p>
+                    </div>
+                    <div class="subforum-stats subforum-column center">
+                        <span>${json.userId} | date</span>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+            document.body.appendChild(div);
+       // }
+    })
