@@ -46,35 +46,39 @@ for (let i = 0; i < posts.length; i++) {
     document.body.appendChild(div);
 }
 
-fetch('https://jsonplaceholder.typicode.com/posts')
+fetch('https://dummyjson.com/posts')
     .then((response) => response.json())
-    .then((json) => {
-        //for (let i = 0; i < json.id; i++) {
-            let div = document.createElement('div');
-            div.className = "post";
-            div.innerHTML = `<div class="container">
+    .then((data) => {
+            renderPosts(data["posts"])
+    })
+
+function renderPosts(posts) {
+    posts.forEach((item) => {
+        let div = document.createElement('div');
+        div.className = "post";
+        div.innerHTML = `<div class="container">
             <div class="subforum">
                 <div class="subforum-title">
-                    <h1>${json.title}</h1>
+                    <h1>${item.title}</h1>
                 </div>
 
                 <div class="subforum-row center">
                     <div class="subforum-stats subforum-column center">
                     <div class="vote-button">
                         <div class="like">
-                            <span class="plus cursor">+</span> <span id="${json.id}" class="counter">0</span> <span class="minus cursor">-</span>
+                            <span class="plus cursor">+</span> <span id="${item.id}" class="counter">0</span> <span class="minus cursor">-</span>
                         </div>
                     </div>
                     </div>
                     <div class="subforum-description subforum-column center">
-                        <p>${json.body}</p>
+                        <p>${item.body}</p>
                     </div>
                     <div class="subforum-stats subforum-column center">
-                        <span>${json.userId} | date</span>
+                        <span>${item.authorName} | 0</span>
                     </div>
                 </div>
             </div>
         </div>`;
-            document.body.appendChild(div);
-       // }
+        document.body.appendChild(div);
     })
+}
