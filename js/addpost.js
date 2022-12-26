@@ -1,11 +1,9 @@
-import { format } from 'https://unpkg.com/browse/fecha@4.2.3/';
+import  ms from 'https://unpkg.com/ms@2.1.3/index.js';
 
-format(new Date(), 'YYYY-MM-DD HH:mm:ss');
 
 const formElement = document.getElementById('post-form')
 
 let idNum = +localStorage.getItem("idNum") || 2
-let userID = 100;
 
 formElement.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -14,7 +12,6 @@ formElement.addEventListener('submit', (e) => {
     let subject = formData.get('subject');
     let title = formData.get('title');
     let date = new Date();
-    let dayWrapper = moment(date);
 
     idNum = (idNum + 1)
     localStorage.setItem("idNum", idNum)
@@ -27,8 +24,7 @@ formElement.addEventListener('submit', (e) => {
         rating: 0,
         day: date.getDate(),
         month: date.getMonth(),
-        year: date.getFullYear(),
-        postDate: dayWrapper
+        year: date.getFullYear()
     }
 
     let posts

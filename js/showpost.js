@@ -1,3 +1,7 @@
+import { format } from 'https://unpkg.com/fecha@4.2.3/lib/fecha.js';
+
+
+
 let posts
 
 if (!localStorage.getItem("posts")) {
@@ -54,7 +58,7 @@ for (let i = 0; i < posts.length; i++) {
     })*/
 
 fetch('https://www.reddit.com/r/Jokes.json')
-        .then((response) => response.json())
+    .then((response) => response.json())
         .then((data) => {
             renderPosts(data.data.children.map((data) => data.data))
         })
@@ -63,6 +67,7 @@ fetch('https://www.reddit.com/r/Jokes.json')
 
 function renderPosts(item) {
     item.forEach((elem) => {
+        let date = new Date(elem.created_utc)
         let div = document.createElement('div');
         div.className = "post";
         div.innerHTML = `<div class="container">
@@ -75,7 +80,7 @@ function renderPosts(item) {
                     <div class="subforum-stats subforum-column center">
                     <div class="vote-button">
                         <div class="like">
-                            <span class="plus cursor">+</span> <span id="${elem.id}" class="counter">0</span> <span class="minus cursor">-</span>
+                            <span class="plus cursor">+</span> <span id="${elem.id}" class="counter">${item.score}</span> <span class="minus cursor">-</span>
                         </div>
                     </div>
                     </div>
@@ -83,7 +88,7 @@ function renderPosts(item) {
                         <p>${elem.selftext}</p>
                     </div>
                     <div class="subforum-stats subforum-column center">
-                        <span>${elem.author} | 0</span>
+                        <span>${elem.author} | ${format(date, 'MM-DD')}</span>
                     </div>
                 </div>
             </div>
