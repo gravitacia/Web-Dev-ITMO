@@ -1,3 +1,6 @@
+import  ms from 'https://unpkg.com/ms@2.1.3/index.js';
+
+
 const formElement = document.getElementById('post-form')
 
 let idNum = +localStorage.getItem("idNum") || 2
@@ -36,5 +39,8 @@ formElement.addEventListener('submit', (e) => {
     posts.push(object)
 
     localStorage.setItem("posts", JSON.stringify(posts))
+
+
+
     window.location.reload();
 })

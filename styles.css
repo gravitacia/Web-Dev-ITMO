@@ -53,7 +53,7 @@ body{
 
 .subforum-row{
     display: grid;
-    grid-template-columns: 8% 40% 8%;
+    grid-template-columns: 15% 60% 15%;
 }
 
 
@@ -224,7 +224,7 @@ input[type=submit] {
 
     .subforum-row{
         display: grid;
-        grid-template-columns: 20% 60% 20%;
+        grid-template-columns: 25% 50% 25%;
     }
 
     html{
