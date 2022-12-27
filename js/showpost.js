@@ -80,7 +80,7 @@ function renderPosts(item) {
                     <div class="subforum-stats subforum-column center">
                     <div class="vote-button">
                         <div class="like">
-                            <span class="plus cursor">+</span> <span id="${elem.id}" class="counter">${item.score}</span> <span class="minus cursor">-</span>
+                            <span class="plus cursor">+</span> <span id="${elem.id}" class="counter">0</span> <span class="minus cursor">-</span>
                         </div>
                     </div>
                     </div>
@@ -88,7 +88,10 @@ function renderPosts(item) {
                         <p>${elem.selftext}</p>
                     </div>
                     <div class="subforum-stats subforum-column center">
-                        <span>${elem.author} | ${format(date, 'MM-DD')}</span>
+                        <span>
+                        <p>${elem.author}</p> 
+                        <p>${format(date, 'mediumDate')}</p>
+                        </span>
                     </div>
                 </div>
             </div>
