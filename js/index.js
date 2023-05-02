@@ -1,11 +1,11 @@
 function navButton() {
-        let x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
+    let x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
     }
+}
 
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("plus")) {
@@ -19,68 +19,93 @@ document.addEventListener("click", function (event) {
     }
 });
 
+function renderPosts(item) {
+    const postsDiv = document.getElementById('posts');
+    postsDiv.innerHTML = '';
 
-const postTemplate = ({ author, title, subject, rating, id, day, month, year }) => `
-    <div class="post">
-        <div class="container">
-            <div class="subforum">
-                <div class="subforum-title">
-                    <h1>${title}</h1>
-                </div>
+    item.forEach((elem) => {
+        const date = new Date(elem.created_utc);
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.innerHTML = `
+      <div class="container">
+        <div class="subforum">
+          <div class="subforum-title">
+            <h1>${elem.title}</h1>
+          </div>
 
-                <div class="subforum-row center">
-                    <div class="subforum-stats subforum-column center">
-                        <div class="vote-button">
-                            <div class="like">
-                                <span class="plus cursor" data-id="${id}">+</span>
-                                <span id="${id}" class="counter">${rating}</span>
-                                <span class="minus cursor" data-id="${id}">-</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subforum-description subforum-column center">
-                        <p>${subject}</p>
-                    </div>
-                    <div class="subforum-stats subforum-column center">
-                        <span>${author} | ${day}.${month}.${year}</span>
-                    </div>
+          <div class="subforum-row center">
+            <div class="subforum-stats subforum-column center">
+              <div class="vote-button">
+                <div class="like">
+                  <span class="plus cursor">+</span>
+                  <span id="${elem.id}" class="counter">0</span>
+                  <span class="minus cursor">-</span>
                 </div>
+              </div>
             </div>
+            <div class="subforum-description subforum-column center">
+              <p>${elem.selftext}</p>
+            </div>
+            <div class="subforum-stats subforum-column center">
+              <span>
+                <p>${elem.author}</p> 
+                <p>${date.toLocaleDateString()}</p>
+              </span>
+            </div>
+          </div>
         </div>
-    </div>
-`;
-
-function renderPosts() {
-    const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    const postContainer = document.querySelector('#post-container');
-    postContainer.innerHTML = '';
-    posts.forEach(post => {
-        const html = postTemplate(post);
-        postContainer.insertAdjacentHTML('beforeend', html);
+      </div>
+    `;
+        postsDiv.appendChild(div);
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    renderPosts();
-    document.addEventListener('click', event => {
-        if (event.target.classList.contains('plus')) {
-            const id = event.target.dataset.id;
-            const posts = JSON.parse(localStorage.getItem('posts')) || [];
-            const index = posts.findIndex(post => post.id === id);
-            if (index > -1) {
-                posts[index].rating++;
-                localStorage.setItem('posts', JSON.stringify(posts));
-                document.querySelector(`#${id}`).textContent = posts[index].rating;
-            }
-        } else if (event.target.classList.contains('minus')) {
-            const id = event.target.dataset.id;
-            const posts = JSON.parse(localStorage.getItem('posts')) || [];
-            const index = posts.findIndex(post => post.id === id);
-            if (index > -1) {
-                posts[index].rating--;
-                localStorage.setItem('posts', JSON.stringify(posts));
-                document.querySelector(`#${id}`).textContent = posts[index].rating;
-            }
-        }
-    });
-});
+
+let posts
+
+if (!localStorage.getItem("posts")) {
+    posts = []
+}
+else {
+    posts = JSON.parse(localStorage.getItem("posts"))
+}
+
+for (let i = 0; i < posts.length; i++) {
+    console.log(posts[i])
+    let count = posts[i].rating
+    let authorName = posts[i].author
+    let title = posts[i].title
+    let id = posts[i].id
+    let text = posts[i].subject
+    let day = posts[i].day
+    let month = posts[i].month
+    let year = posts[i].year
+
+    let div = document.createElement('div');
+    div.className = "post";
+    div.innerHTML = '<div class="container">' +
+        '<div class="subforum">' +
+        '<div class="subforum-title">' +
+        '<h1>' + title + '</h1>' +
+        '</div>' +
+
+        '<div class="subforum-row center">' +
+        '<div class="subforum-stats subforum-column center">' +
+        '<div class="vote-button">' +
+        '<div class="like">' +
+        '<span class="plus cursor">+</span> <span id="' + id + '" class="counter">' + count + '</span> <span class="minus cursor">-</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="subforum-description subforum-column center">' +
+        '<p>' + text + '</p>' +
+        '</div>' +
+        '<div class="subforum-stats subforum-column center">' +
+        '<span>' + authorName + ' | ' + day + '.' + month + '.' + year + '</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    document.body.appendChild(div);
+}
