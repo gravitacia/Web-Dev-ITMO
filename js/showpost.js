@@ -51,17 +51,27 @@ for (let i = 0; i < posts.length; i++) {
     document.body.appendChild(div);
 }
 
-/*fetch('https://dummyjson.com/posts')
-    .then((response) => response.json())
-    .then((data) => {
-            renderPosts(data["posts"])
-    })*/
-
 fetch('https://www.reddit.com/r/Jokes.json')
     .then((response) => response.json())
         .then((data) => {
             renderPosts(data.data.children.map((data) => data.data))
         })
+
+
+const searchForm = document.getElementById('search-form');
+searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const searchInput = document.getElementById('search-input');
+    const subreddit = searchInput.value.replace('/r/', '');
+    fetch(`https://www.reddit.com/r/${subreddit}.json`)
+        .then((response) => response.json())
+        .then((data) => {
+            renderPosts(data.data.children.map((data) => data.data))
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+});
 
 
 
