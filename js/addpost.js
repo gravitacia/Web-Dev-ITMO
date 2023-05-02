@@ -1,18 +1,25 @@
-// Получаем элемент для отображения списка постов
+const form = document.getElementById('post-form');
 const postList = document.getElementById('post-list');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const title = document.getElementById('title').value;
+    const subject = document.getElementById('subject').value;
+    const date = luxon.DateTime.now().toString();
+    const post = { username, title, subject, date };
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.push(post);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    alert('Post added successfully');
 
-// Получаем все посты из localStorage
-const posts = JSON.parse(localStorage.getItem('posts')) || [];
-
-// Проходимся по каждому посту и создаем элемент для его отображения
-posts.forEach(post => {
+    // Создаем элемент для нового поста и добавляем его в список
     const postItem = document.createElement('li');
     const postTitle = document.createElement('h3');
-    postTitle.textContent = post.title;
+    postTitle.textContent = title;
     const postDate = document.createElement('p');
-    postDate.textContent = post.date;
+    postDate.textContent = date;
     const postSubject = document.createElement('p');
-    postSubject.textContent = post.subject;
+    postSubject.textContent = subject;
     postItem.appendChild(postTitle);
     postItem.appendChild(postDate);
     postItem.appendChild(postSubject);
