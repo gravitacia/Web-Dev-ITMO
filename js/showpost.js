@@ -1,4 +1,4 @@
-import { format } from 'https://unpkg.com/fecha@4.2.3/lib/fecha.js';
+import  format  from 'https://unpkg.com/fecha@4.2.3/lib/fecha.js';
 
 
 
@@ -56,22 +56,6 @@ fetch('https://www.reddit.com/r/Jokes.json')
         .then((data) => {
             renderPosts(data.data.children.map((data) => data.data))
         })
-
-
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const searchInput = document.getElementById('search-input');
-    const subreddit = searchInput.value.replace('/r/', '');
-    fetch(`https://www.reddit.com/r/${subreddit}.json`)
-        .then((response) => response.json())
-        .then((data) => {
-            renderPosts(data.data.children.map((data) => data.data))
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-});
 
 
 
