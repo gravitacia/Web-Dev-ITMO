@@ -1,14 +1,11 @@
-import { format } from 'https://unpkg.com/fecha@4.2.3/lib/fecha.js';
-
-
 function navButton() {
-    let x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
+        let x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
     }
-}
 
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("plus")) {
@@ -53,7 +50,7 @@ function renderPosts(item) {
             <div class="subforum-stats subforum-column center">
               <span>
                 <p>${elem.author}</p> 
-                <p>${format(date, 'mediumDate')}</p>
+                <p>${date.toLocaleDateString()}</p>
               </span>
             </div>
           </div>
@@ -87,30 +84,28 @@ for (let i = 0; i < posts.length; i++) {
 
     let div = document.createElement('div');
     div.className = "post";
-    div.innerHTML = `<div class="container">
-            <div class="subforum">
-                <div class="subforum-title">
-                    <h1>${title}</h1>
-                </div>
+    div.innerHTML = '<div class="container">' +
+        '<div class="subforum">' +
+        '<div class="subforum-title">' +
+        '<h1>' + title + '</h1>' +
+        '</div>' +
 
-                <div class="subforum-row center">
-                    <div class="subforum-stats subforum-column center">
-                    <div class="vote-button">
-                        <div class="like">
-                            <span class="plus cursor">+</span> <span id="${id}" class="counter">${count}</span> <span class="minus cursor">-</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="subforum-description subforum-column center">
-                        <p>${text}</p>
-                    </div>
-                    <div class="subforum-stats subforum-column center">
-                        <span>${authorName} | ${day}.${month}.${year}</span>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+        '<div class="subforum-row center">' +
+        '<div class="subforum-stats subforum-column center">' +
+        '<div class="vote-button">' +
+        '<div class="like">' +
+        '<span class="plus cursor">+</span> <span id="' + id + '" class="counter">' + count + '</span> <span class="minus cursor">-</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="subforum-description subforum-column center">' +
+        '<p>' + text + '</p>' +
+        '</div>' +
+        '<div class="subforum-stats subforum-column center">' +
+        '<span>' + authorName + ' | ' + day + '.' + month + '.' + year + '</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
     document.body.appendChild(div);
 }
-
-
