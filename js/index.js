@@ -79,30 +79,18 @@ searchForm.addEventListener('submit', function(e) {
         });
 });
 
-
-const form = document.getElementById('post-form');
 const postList = document.getElementById('post-list');
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const title = document.getElementById('title').value;
-    const subject = document.getElementById('subject').value;
-    const today = new Date();
-    const date = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
-    const post = { username, title, subject, date };
-    let posts = JSON.parse(localStorage.getItem('posts')) || [];
-    posts.push(post);
-    localStorage.setItem('posts', JSON.stringify(posts));
-    alert('Post added successfully');
+let posts = JSON.parse(localStorage.getItem('posts')) || [];
 
-    // Создаем элемент для нового поста и добавляем его в список
+// Создаем элементы для каждого поста из localStorage и добавляем их на страницу
+posts.forEach(post => {
     const postItem = document.createElement('li');
     const postTitle = document.createElement('h3');
-    postTitle.textContent = title;
+    postTitle.textContent = post.title;
     const postDate = document.createElement('p');
-    postDate.textContent = date;
+    postDate.textContent = post.date;
     const postSubject = document.createElement('p');
-    postSubject.textContent = subject;
+    postSubject.textContent = post.subject;
     postItem.appendChild(postTitle);
     postItem.appendChild(postDate);
     postItem.appendChild(postSubject);
