@@ -145,7 +145,8 @@ form.addEventListener('submit', (event) => {
     const username = document.getElementById('username').value;
     const title = document.getElementById('title').value;
     const subject = document.getElementById('subject').value;
-    const date = luxon.DateTime.now().toString();
+    const today = new Date();
+    const date = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
     const post = { username, title, subject, date };
     let posts = JSON.parse(localStorage.getItem('posts')) || [];
     posts.push(post);
