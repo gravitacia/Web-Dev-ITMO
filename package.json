@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "fecha": "^4.2.3",
-    "fecha.js": "^1.0.1"
+    "fecha.js": "^1.0.1",
+    "luxon": "^3.3.0"
   }
 }
