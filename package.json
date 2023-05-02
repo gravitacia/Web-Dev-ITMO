@@ -1,0 +1,8 @@
+{
+  "name": "Web-Dev-ITMO",
+  "version": "1.0.0",
+  "dependencies": {
+    "fecha": "^4.2.3",
+    "fecha.js": "^1.0.1"
+  }
+}

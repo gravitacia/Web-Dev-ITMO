@@ -1,4 +1,4 @@
-import { format }  from 'https://unpkg.com/fecha@4.2.3/lib/fecha.js';
+import { format }  from 'fecha';
 
 
 
