@@ -73,11 +73,11 @@ else {
 
 for (let i = 0; i < posts.length; i++) {
     console.log(posts[i])
-    let count = posts[i].rating
-    let authorName = posts[i].author
+    let count = 0
+    let username = posts[i].username
     let title = posts[i].title
     let id = posts[i].id
-    let text = posts[i].subject
+    let subject = posts[i].subject
     let day = posts[i].day
     let month = posts[i].month
     let year = posts[i].year
@@ -99,10 +99,10 @@ for (let i = 0; i < posts.length; i++) {
         '</div>' +
         '</div>' +
         '<div class="subforum-description subforum-column center">' +
-        '<p>' + text + '</p>' +
+        '<p>' + subject + '</p>' +
         '</div>' +
         '<div class="subforum-stats subforum-column center">' +
-        '<span>' + authorName + ' | ' + day + '.' + month + '.' + year + '</span>' +
+        '<span>' + username + ' | ' + day + '.' + month + '.' + year + '</span>' +
         '</div>' +
         '</div>' +
         '</div>' +
