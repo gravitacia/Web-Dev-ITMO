@@ -64,20 +64,6 @@ function renderPosts(item) {
     });
 }
 
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const searchInput = document.getElementById('search-input');
-    const subreddit = searchInput.value.replace('/r/', '');
-    fetch(`https://www.reddit.com/r/${subreddit}.json`)
-        .then((response) => response.json())
-        .then((data) => {
-            renderPosts(data.data.children.map((data) => data.data));
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-});
 
 const postList = document.getElementById('post-list');
 let posts = JSON.parse(localStorage.getItem('posts')) || [];
