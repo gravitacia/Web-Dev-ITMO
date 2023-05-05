@@ -137,10 +137,11 @@ const addEvent = () => {
 
         // Add the event to localStorage and update the page
         if (eventName && eventDescription) {
-            localStorage.setItem("currentEvent", JSON.stringify({ name: eventName, description: eventDescription }));
             const ongoingEvent = document.createElement("div");
             ongoingEvent.innerHTML = `Ongoing event - ${eventName}`;
             nav.insertBefore(ongoingEvent, nav.firstChild);
+            localStorage.setItem("currentEvent", JSON.stringify({ name: eventName, description: eventDescription }));
+            location.reload(); // Reload the page to update the navbar with the new ongoing event
         }
     }
 };
