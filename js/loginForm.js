@@ -30,9 +30,18 @@ loginForm.addEventListener("submit", (event) => {
     const password = document.getElementById("password").value.trim();
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const blockedUsers = JSON.parse(localStorage.getItem("blockedUsers")) || [];
-    const user = users.find((u) => u.name === username && u.pass === password && !blockedUsers.includes(u.name));
+    let user = users.find((u) => u.name === username); // ищем пользователя только по имени
     if (!user) {
+        // Если пользователь не существует, добавляем его в localStorage и делаем его текущим пользователем
+        user = {name: username, pass: password};
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+    } else if (user.pass !== password) {
         alert("Invalid Credentials");
+        return;
+    }
+    if (blockedUsers.includes(user.name)) {
+        alert("User is blocked");
         return;
     }
     localStorage.setItem("currentUser", JSON.stringify(user));
