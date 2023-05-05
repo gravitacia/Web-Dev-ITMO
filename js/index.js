@@ -9,103 +9,107 @@ function navButton() {
 
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("plus")) {
-        console.log(event.target.parentElement.querySelector(".counter").innerHTML)
-        event.target.parentElement.querySelector(".counter").innerText = parseInt(event.target.parentElement.querySelector(".counter").innerText) + 1;
+        console.log(event.target.parentElement.querySelector(".counter").innerHTML);
+        event.target.parentElement.querySelector(".counter").innerText = parseInt(
+            event.target.parentElement.querySelector(".counter").innerText
+        ) + 1;
     }
 
     if (event.target.classList.contains("minus")) {
-        console.log(event.target.parentElement.querySelector(".counter").innerHTML)
-        event.target.parentElement.querySelector(".counter").innerText = parseInt(event.target.parentElement.querySelector(".counter").innerText) - 1;
+        console.log(event.target.parentElement.querySelector(".counter").innerHTML);
+        event.target.parentElement.querySelector(".counter").innerText = parseInt(
+            event.target.parentElement.querySelector(".counter").innerText
+        ) - 1;
+    }
+
+    if (event.target.id === "comment-button") {
+        let commentsModal = event.target.parentElement.querySelector(".view-comments");
+        commentsModal.style.display = "block";
+    }
+
+    if (event.target.classList.contains("close-comm-btn")) {
+        let commentsModal = event.target.parentElement.parentElement;
+        commentsModal.style.display = "none";
     }
 });
 
-function renderPosts(item) {
-    const postsDiv = document.getElementById('posts');
-    postsDiv.innerHTML = '';
+const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-    item.forEach((elem) => {
-        const date = new Date(elem.created_utc);
-        const div = document.createElement('div');
-        div.className = 'post';
-        div.innerHTML = `
-      <div class="container">
-        <div class="subforum">
-          <div class="subforum-title">
-            <h1>${elem.title}</h1>
-          </div>
+for (let i = 0; i < posts.length; i++) {
+    let commentsHtml = "";
+    let count = 0;
+    const { userId, title, id, body } = posts[i];
+    const postComments = JSON.parse(localStorage.getItem("comments")) || [];
+    const filteredComments = postComments.filter((comment) => comment.postId === id);
 
-          <div class="subforum-row center">
-            <div class="subforum-stats subforum-column center">
-              <div class="vote-button">
-                <div class="like">
-                  <span class="plus cursor">+</span>
-                  <span id="${elem.id}" class="counter">0</span>
-                  <span class="minus cursor">-</span>
-                </div>
+    if (filteredComments.length) {
+        for (let j = 0; j < filteredComments.length; j++) {
+            commentsHtml += `
+        <ul>
+          <li>
+            <p>${filteredComments[j].text}</p>
+            <p>By ${filteredComments[j].userId}</p>
+          </li>
+          <hr>
+        </ul>
+      `;
+        }
+    } else {
+        commentsHtml = "<p>No comments yet</p>";
+    }
+
+    const div = document.createElement("div");
+    div.className = "post";
+    div.innerHTML = `
+    <div class="container">
+      <div class="subforum">
+        <div class="subforum-title">
+          <h1>${title}</h1>
+        </div>
+
+        <div class="subforum-row center">
+          <div class="subforum-stats subforum-column center">
+            <div class="vote-button">
+              <div class="like">
+                <span class="plus cursor">+</span>
+                <span id="${id}" class="counter">${count}</span>
+                <span class="minus cursor">-</span>
               </div>
             </div>
-            <div class="subforum-description subforum-column center">
-              <p>${elem.selftext}</p>
-            </div>
-            <div class="subforum-stats subforum-column center">
-              <span>
-                <p>${elem.author}</p> 
-                <p>${date.toLocaleDateString()}</p>
-              </span>
+          </div>
+
+          <div class="subforum-description subforum-column center">
+            <p>${body}</p>
+          </div>
+
+          <div class="subforum-stats subforum-column center">
+            <span>User ${userId} | ${new Date().toLocaleDateString()}</span>
+          </div>
+        </div>
+
+        <div class="modal fade" id="comments-modal-${id}" tabindex="-1" role="dialog" aria-labelledby="commentsModal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="commentsModal">Comments</h5>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                ${commentsHtml}
+              </div>
+
+              <div class="modal-footer">
+              </div>
             </div>
           </div>
         </div>
       </div>
-    `;
-        postsDiv.appendChild(div);
-    });
-}
+    </div>
+  `;
 
-
-let posts
-
-if (!localStorage.getItem("posts")) {
-    posts = []
-}
-else {
-    posts = JSON.parse(localStorage.getItem("posts"))
-}
-
-for (let i = 0; i < posts.length; i++) {
-    console.log(posts[i])
-    let count = 0
-    let username = posts[i].username
-    let title = posts[i].title
-    let id = posts[i].id
-    let subject = posts[i].subject
-    let day = posts[i].day
-    let month = posts[i].month
-    let year = posts[i].year
-
-    let div = document.createElement('div');
-    div.className = "post";
-    div.innerHTML = '<div class="container">' +
-        '<div class="subforum">' +
-        '<div class="subforum-title">' +
-        '<h1>' + title + '</h1>' +
-        '</div>' +
-
-        '<div class="subforum-row center">' +
-        '<div class="subforum-stats subforum-column center">' +
-        '<div class="vote-button">' +
-        '<div class="like">' +
-        '<span class="plus cursor">+</span> <span id="' + id + '" class="counter">' + count + '</span> <span class="minus cursor">-</span>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<div class="subforum-description subforum-column center">' +
-        '<p>' + subject + '</p>' +
-        '</div>' +
-        '<div class="subforum-stats subforum-column center">' +
-        '<span>' + username + ' | ' + day + '.' + month + '.' + year + '</span>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
     document.body.appendChild(div);
 }
+
+
+

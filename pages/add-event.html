@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>10ch</title>
+  <link rel="stylesheet" type="text/css" href="../styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<header>
+  <!--NavBar Section-->
+  <div class="topnav" id="myTopnav">
+    <a href="../index.html">
+      Main
+    </a>
+    <a href="search.html">
+      Search
+    </a>
+    <a href="profile.html">
+      Profile
+    </a>
+    <a href="login.html">
+      Sign up
+    </a>
+    <a class="active" href="post.html">
+      Add Post
+    </a>
+    <a href="javascript:void(0);" class="icon" onclick="navButton()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</header>
+<form>
+  <label for="eventname">Event Name:</label>
+  <input type="text" id="eventname" name="eventname" required>
+  <br><br>
+  <label for="eventdesc">Event Description:</label>
+  <textarea id="eventdesc" name="eventdesc" required></textarea>
+  <br><br>
+  <button type="submit">Add Event</button>
+</form>
+<script src="../js/add-event.js"></script>
+</body>
+</html>

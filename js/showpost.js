@@ -91,20 +91,3 @@ form.addEventListener('submit', function(event) {
         });
 });
 
-const postList = document.getElementById('post-list');
-let posts = JSON.parse(localStorage.getItem('posts')) || [];
-
-// Создаем элементы для каждого поста из localStorage и добавляем их на страницу
-posts.forEach(function(post) {
-    const postItem = document.createElement('li');
-    const postTitle = document.createElement('h3');
-    postTitle.textContent = post.title;
-    const postDate = document.createElement('p');
-    postDate.textContent = post.date;
-    const postSubject = document.createElement('p');
-    postSubject.textContent = post.subject;
-    postItem.appendChild(postTitle);
-    postItem.appendChild(postDate);
-    postItem.appendChild(postSubject);
-    postList.appendChild(postItem);
-});

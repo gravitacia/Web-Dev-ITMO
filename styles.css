@@ -57,6 +57,85 @@ body{
 }
 
 
+.view-comments {
+    display: none; /* скрываем модальное окно по умолчанию */
+    position: fixed; /* фиксируем модальное окно на экране */
+    z-index: 1; /* устанавливаем z-index для модального окна */
+    top: 0; left: 0;
+    width: 100%; height: 100%; /* устанавливаем ширину и высоту модального окна */
+    overflow: auto; /* включаем прокрутку, если контент модального окна выходит за границы экрана */
+    background-color: rgba(0,0,0,0.4); /* устанавливаем цвет фона модального окна */
+}
+
+.modal-comments-content {
+    background-color: #fff; /* задаем фон модальному окну */
+    margin: 15% auto; /* устанавливаем отступы от верхнего края экрана */
+    padding: 20px;
+    border: 1px solid #888; /* задаем рамку модальному окну */
+    width: 80%; /* устанавливаем ширину модального окна */
+}
+
+.close-comm-btn {
+    color: #aaa; /* задаем цвет кнопки закрытия модального окна */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-comm-btn:hover,
+.close-comm-btn:focus {
+    color: black; /* меняем цвет кнопки закрытия при наведении курсора мыши */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-modal {
+    display: none; /* скрываем модальное окно по умолчанию */
+    position: fixed; /* фиксируем модальное окно на экране */
+    z-index: 1; /* устанавливаем z-index для модального окна */
+    top: 0; left: 0;
+    width: 100%; height: 100%; /* устанавливаем ширину и высоту модального окна */
+    overflow: auto; /* включаем прокрутку, если контент модального окна выходит за границы экрана */
+    background-color: rgba(0,0,0,0.4); /* устанавливаем цвет фона модального окна */
+}
+
+.modal-login-content {
+    background-color: #fff; /* задаем фон модальному окну */
+    margin: 15% auto; /* устанавливаем отступы от верхнего края экрана */
+    padding: 20px;
+    border: 1px solid #888; /* задаем рамку модальному окну */
+    width: 80%; /* устанавливаем ширину модального окна */
+}
+
+.close-login-btn {
+    color: #aaa; /* задаем цвет кнопки закрытия модального окна */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+    border: 1px solid white;
+}
+
+.nav-link:hover {
+    background-color: white;
+    color: #333;
+}
+
+
+.close-login-btn:hover,
+.close-login-btn:focus {
+    color: black; /* меняем цвет кнопки закрытия при наведении курсора мыши */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 .subforum-column{
     padding: 10px;
     margin:4px;
